@@ -1,0 +1,76 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<style>
+    .product {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        {% for item in product %}
+        <div class="col-10 col-md-4 col-sm-6 col-xs-6 product mx-auto">
+            <div class="card h-100" style="width: 16rem;">
+                <img class="card-img-top " style="height: 300px;" src="{{item.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="{{ item.get_absolute_url }}" class="btn btn-primary">See More</a>
+                        </div>
+                        <div class="col-6">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Details">
+                                Details
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="Details" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Product Description</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{ item.description }}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
